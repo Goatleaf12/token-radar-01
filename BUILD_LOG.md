@@ -36,3 +36,22 @@
   board.json exactly. Only page error: /favicon.ico 404 (benign).
 - Fixes during verification: detail recompute wording (rounded figures, not a
   step-down) + search input widened to 270px; screenshots re-taken after fix.
+
+## 2026-11-14 ~17:22 WIB — kit CLI check (13 pass, 1 fail, 6 skip, 3 at-submission)
+- Repo pushed: https://github.com/Goatleaf12/token-radar-01 @ 8cfc638da542d7ff5d0f6f290bbb723bd30aca96.
+- Bundle: transcripts.tar.gz (183,146 B, sha256 8009af2f11cbec1c1947df0736d7e83fb96b4dfba22ff689bb9ad232daba1de6),
+  from session 32c5a696-53c2-4487-97fb-498320f20a0b only (--no-discover --no-family).
+- PASS: competition_open, snapshot, license_osi (MIT), entrypoint (main.ts/node22),
+  repo_created_after_open (beacon root 36faa6f4..., round 33949115, 10:05:09Z),
+  transcripts_present/recorded, thinking_wellformed, thinking_in_window (all 136
+  timestamps in window), thinking_reproduces 41.8% (551/1316, main.ts 18 authored),
+  thinking_turns 44, thinking_revised (app.js from 3 messages), thinking_fresh (anchor quoted).
+- FAIL (expected, fixed in submit turn): thinking_priced — 0 usage rows; rows only
+  appear after this turn is delivered. Submit turn must run the muse.db SELECT for
+  agent_ids 32c5a696-53c2-4487-97fb-498320f20a0b (builder) + 02eaf231-df82-4915-abb0-bf7327a730a0
+  (top-level), re-bundle with --muse-usage, re-check, then submit.
+- Check treats the entry as a SOURCE BUNDLE entry (history begins at beacon root);
+  submit --source is the matching path, though the same commit is also public on
+  GitHub with .makefun/owner.json for a --repo-url submit. Decide at submit time.
+- Competition re-verified 17:22 WIB: open, deadline 2026-12-14T10:00:00Z, 1 submission
+  in field, quota 5/day 10 total, 0 used by this account. $0 spent.
