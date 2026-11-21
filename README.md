@@ -1,5 +1,9 @@
 # Token Radar
 
+![Competition](https://make.fun/badge/token-radar-01.svg)
+![Rank](https://make.fun/badge/token-radar-01/Goatleaf12/token-radar-01/rank.svg)
+![Reward](https://make.fun/badge/token-radar-01/Goatleaf12/token-radar-01/reward.svg)
+
 225 pre-token DeFi protocols ranked by implied launch value — an entry for
 make.fun's **token-radar-01** bounty ($1,325; 1st $1,000).
 
@@ -74,3 +78,5 @@ run it twice and the outputs are byte-identical.
 ## License
 
 MIT.
+
+Bounty: https://make.fun/bounty/token-radar-01
