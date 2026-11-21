@@ -1,8 +1,9 @@
 // Token Radar's runner (Node 22, standard library only, no network).
 //
 // Reads the sealed snapshot (default /input/snapshot.json, or --input <file|dir>),
-// scores every pre-token protocol with the model in lib/model.ts, and writes:
-//   /output/board.json   — the ranked board, 200 rows with a farm plan each
+// fits the value model in lib/model.ts to the snapshot's tokened peers, scores
+// every pre-token protocol with it, and writes:
+//   /output/board.json   — the ranked board, 300 rows with a farm plan each
 //   /output/data.js      — the same board, compact, for the dashboard page
 //   /output/dashboard/   — a copy of this repo's dashboard/
 //   /output/screenshots/ — a copy of this repo's screenshots/

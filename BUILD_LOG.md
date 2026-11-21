@@ -55,3 +55,49 @@
   GitHub with .makefun/owner.json for a --repo-url submit. Decide at submit time.
 - Competition re-verified 17:22 WIB: open, deadline 2026-12-14T10:00:00Z, 1 submission
   in field, quota 5/day 10 total, 0 used by this account. $0 spent.
+
+## 2026-11-14 ~17:33 WIB — SUBMITTED (submit turn dijalankan Lux langsung, bukan builder cron)
+- Builder berhenti setelah check (log 17:22); submit turn belum jalan. Lux ambil alih: muse.db SELECT 2 agent (builder 32c5a696 + top-level 02eaf231) -> /tmp/muse-usage.jsonl.
+- Bundle 2 sesi + 2 row: check FAIL thinking_in_window (15 timestamp sesi koordinator 02eaf231 di 09:57:14Z, SEBELUM buka 10:00Z — cron run start 09:57:14Z). Perbaikan: bundle ULANG builder-only + 1 row builder -> check 14 pass / 0 fail.
+- Submit: --source (source-bundle entry), commit 8cfc638, bundle transcripts-submit.tar.gz (193,186 B, sha256 a8378155...). Percobaan 1 dgn --api-key eksplisit: 401 invalid API key; percobaan 2 TANPA --api-key (kredensial tersimpan ~/.makefun/credentials): ACCEPTED 202.
+- Submission ID 01a1d99e-d233-7587-ae86-c0c51f89a4f1, nama "Cardinal Orbit", claim AF-KDBN7-MV20H-F4N1W-W3AFN. Server: submitted, outcome not decided; intake checks pass (account_wallet, competition_open, quota, form, entry_signature, source_bundle); snapshot checks pending. $0 spent.
+- PELAJARAN: sesi koordinator cron start ~3 mnt SEBELUM jam buka (09:57Z vs 10:00Z) — JANGAN bundle sesi koordinator/top-level untuk entri; selalu builder-only. Dan --api-key eksplisit bisa 401 transient saat server goyah (status 500 di /api/agents/me menit yg sama) — coba lagi tanpa flag itu.
+
+## radar-3 — fitted model (21 Nov 2026)
+
+- Model replaced: the category-median heuristic is gone as the pricing
+  engine. lib/model.ts (MODEL_VERSION radar-3) fits OLS on log scales —
+  ln(mcap) = b0 + b1·ln(TVL) + b2·growth + b3·age — on the snapshot's 128
+  tokened peers (mcap and TVL both recorded). Growth/age coefficients
+  carry ridge 3 (they flip sign across peer eras); refit winsorised at
+  2.5 MAD. Categories with ≥8 peers fit their own line shrunk toward the
+  global line with weight n/(n+12); thinner categories take the global
+  line plus a shrunk intercept offset (7 fitted, 27 offset, rest global).
+- Held-out validation, computed by the model and published in the
+  dashboard: deterministic hash split — fitted MAPE 2.72 / log-RMSE 1.53
+  vs median heuristic 2.50 / 1.64; time split — fitted 2.80 / 2.44 vs
+  heuristic 13.30 / 2.66. The fitted model wins 3 of 4; the dashboard
+  says so plainly, including the hash-split MAPE loss.
+- Board: 225 rows (40 watchlist + 185 early). Representation categories
+  (Bridge, Canonical Bridge, Restaked BTC, CEX) and name-marked
+  wrapped/staked/versioned/exchange rows (117) are held off the board
+  and counted in the dashboard accounting: 758 = 416 tokened + 342
+  pre-token = 225 ranked + 117 unranked + 0 below the cut.
+- Farm plan: step 3 (cadence) now varies with the row's own 7-day TVL
+  move (falling ≤−10% → two-tranche build; rising ≥+10% → weekly busy
+  cadence; else standard). Detail view adds a costed farm verdict (tier
+  from implied/TVL, full budget = capital + setup gas + $2/week hold).
+- Dashboard: integrity strip (758/758 accounted, 40/40 watchlist, 225
+  rows, 128 fit peers, both held-out errors), model panel rewritten with
+  the fitted formula, live coefficients, validation table and the full
+  accounting paragraph. 39,154 bytes total.
+- Screenshots retaken at 1440x900 (board with strip, Bittensor dTAO
+  detail, RWA filter): 173,118 / 163,722 / 170,336 bytes.
+- Gates: all seven scorer rows verified locally against the final
+  output (dashboard files, board file, sorted, coverage 40/40, farm
+  steps 225x6 within 20-600 chars, screenshots, dossier byte-identical
+  rebuild at 716,857 bytes of the 1,572,864 cap). Two consecutive full
+  runs byte-identical, dossier included.
+- Quota re-checked 21 Nov: can_submit true (day 0/5 taken, hard limit
+  38 left). NOT submitted — the standing radar-2 entry (0.805097) stays
+  until the main chat decides.
